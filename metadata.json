@@ -1,0 +1,6 @@
+{
+  "name": "MyTask - Portal Tugas Mahasiswa",
+  "description": "Portal Pengumpulan Tugas dan Akademik Mahasiswa terintegrasi Supabase dengan antarmuka presisi bertema Obsidian Dark.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
