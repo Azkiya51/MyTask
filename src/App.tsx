@@ -7,7 +7,14 @@ import { ProfilView } from './components/ProfilView';
 import { loadTasks, loadCourses, loadStudentProfile, submitTask } from './lib/supabase';
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState<ViewTab>('beranda');
+  // 1. Cek URL saat pertama kali halaman dimuat
+  const getInitialTab = (): ViewTab => {
+    const path = window.location.pathname;
+    if (path.includes('/profil')) return 'profil';
+    return 'beranda';
+  };
+
+  const [currentTab, setCurrentTab] = useState<ViewTab>(getInitialTab());
   const [student, setStudent] = useState<StudentProfile | null>(null);
   const [courses, setCourses] = useState<Course[]>([]);
   const [tasks, setTasks] = useState<TaskItem[]>([]);
@@ -32,9 +39,33 @@ export default function App() {
       }
     }
     initData();
+
+    // 2. Menangani tombol Back / Forward pada browser
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      if (path.includes('/profil')) {
+        setCurrentTab('profil');
+      } else {
+        setCurrentTab('beranda');
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Update: Sekarang menerima parameter file fisik
+  // 3. Fungsi ubah tab yang sekaligus mengubah URL browser
+  const handleTabChange = (tab: ViewTab) => {
+    setCurrentTab(tab);
+    if (tab === 'profil') {
+      window.history.pushState({}, '', '/profil');
+    } else {
+      window.history.pushState({}, '', '/');
+    }
+    // Scroll otomatis ke atas saat pindah halaman
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleSubmitTask = async (newTask: TaskItem, file: File | null) => {
     const savedTask = await submitTask(newTask, file);
     setTasks((prev) => [savedTask, ...prev.filter((t) => t.id !== savedTask.id)]);
@@ -42,7 +73,7 @@ export default function App() {
 
   const handleFillTaskForm = (task: TaskItem) => {
     setSelectedCourseCode(task.courseCode);
-    setCurrentTab('beranda');
+    handleTabChange('beranda');
   };
 
   if (isLoading) {
@@ -53,14 +84,15 @@ export default function App() {
     return (
       <div className="min-h-screen bg-[#09090b] text-[#fafafa] flex flex-col items-center justify-center p-6 text-center">
         <h1 className="text-2xl font-bold mb-4 text-[#ef4444]">Data Mahasiswa Kosong</h1>
-        <p className="text-[#a1a1aa] max-w-md">Harap tambahkan minimal 1 baris data mahasiswa di tabel <code>student_profiles</code> melalui dashboard Supabase Anda terlebih dahulu.</p>
+        <p className="text-[#a1a1aa] max-w-md">Harap tambahkan data mahasiswa di tabel <code>student_profiles</code> Supabase.</p>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen flex flex-col bg-[#09090b] text-[#fafafa] selection:bg-[#a78bfa]/30 selection:text-[#fafafa]">
-      <Header currentTab={currentTab} onTabChange={setCurrentTab} student={student} />
+      {/* Menggunakan handleTabChange pengganti fungsi lama */}
+      <Header currentTab={currentTab} onTabChange={handleTabChange} student={student} />
       <div className="flex-1 w-full">
         {currentTab === 'beranda' ? (
           <BerandaView
