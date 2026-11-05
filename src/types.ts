@@ -1,4 +1,4 @@
-export type ViewTab = 'beranda' | 'profil';
+export type ViewTab = 'beranda' | 'profil' | 'pengelola';
 
 export type SubmissionCategory = 'Tugas Individu' | 'Tugas Kelompok' | 'Proyek Akhir' | 'Praktikum Lab';
 
