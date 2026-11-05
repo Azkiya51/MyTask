@@ -4,6 +4,7 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { BerandaView } from './components/BerandaView';
 import { ProfilView } from './components/ProfilView';
+import { PengelolaView } from './components/PengelolaView';
 import { loadTasks, loadCourses, loadStudentProfile, submitTask } from './lib/supabase';
 
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
   const getInitialTab = (): ViewTab => {
     const path = window.location.pathname;
     if (path.includes('/profil')) return 'profil';
+    if (path.includes('/pengelola')) return 'pengelola';
     return 'beranda';
   };
 
@@ -45,6 +47,8 @@ export default function App() {
       const path = window.location.pathname;
       if (path.includes('/profil')) {
         setCurrentTab('profil');
+      } else if (path.includes('/pengelola')) {
+        setCurrentTab('pengelola');
       } else {
         setCurrentTab('beranda');
       }
@@ -59,6 +63,8 @@ export default function App() {
     setCurrentTab(tab);
     if (tab === 'profil') {
       window.history.pushState({}, '', '/profil');
+    } else if (tab === 'pengelola') {
+      window.history.pushState({}, '', '/pengelola');
     } else {
       window.history.pushState({}, '', '/');
     }
@@ -103,6 +109,8 @@ export default function App() {
             selectedCourseCode={selectedCourseCode}
             setSelectedCourseCode={setSelectedCourseCode}
           />
+        ) : currentTab === 'pengelola' ? (
+          <PengelolaView courses={courses} />
         ) : (
           <ProfilView student={student} courses={courses} />
         )}

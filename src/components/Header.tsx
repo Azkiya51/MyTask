@@ -38,7 +38,7 @@ export const Header: React.FC<HeaderProps> = ({
               </svg>
             </div>
 
-            <div className="flex flex-col">
+            <div className="hidden sm:flex flex-col">
               <div className="flex items-center gap-1.5 leading-none">
                 <span className="text-lg font-bold tracking-tight text-[#fafafa]">
                   My<span className="text-[#a78bfa]">Task</span>
@@ -52,11 +52,11 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* HTML5 Navigation bar */}
-          <nav aria-label="Main Navigation" className="flex items-center gap-2">
+          <nav aria-label="Main Navigation" className="flex items-center gap-1 sm:gap-2 overflow-x-auto">
             <button
               type="button"
               onClick={() => onTabChange('beranda')}
-              className={`px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition-colors duration-150 ${
+              className={`px-3 sm:px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition-colors duration-150 whitespace-nowrap ${
                 currentTab === 'beranda'
                   ? 'bg-[#18181b] text-[#fafafa] border border-[#27272a] shadow-sm'
                   : 'text-[#a1a1aa] hover:text-[#fafafa] hover:bg-[#18181b]/50'
@@ -67,13 +67,24 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               type="button"
               onClick={() => onTabChange('profil')}
-              className={`px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition-colors duration-150 ${
+              className={`px-3 sm:px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition-colors duration-150 whitespace-nowrap ${
                 currentTab === 'profil'
                   ? 'bg-[#18181b] text-[#fafafa] border border-[#27272a] shadow-sm'
                   : 'text-[#a1a1aa] hover:text-[#fafafa] hover:bg-[#18181b]/50'
               }`}
             >
               Profil
+            </button>
+            <button
+              type="button"
+              onClick={() => onTabChange('pengelola')}
+              className={`px-3 sm:px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition-colors duration-150 whitespace-nowrap ${
+                currentTab === 'pengelola'
+                  ? 'bg-[#18181b] text-[#fafafa] border border-[#27272a] shadow-sm'
+                  : 'text-[#a1a1aa] hover:text-[#fafafa] hover:bg-[#18181b]/50'
+              }`}
+            >
+              Pengelola Tugas
             </button>
           </nav>
         </div>
