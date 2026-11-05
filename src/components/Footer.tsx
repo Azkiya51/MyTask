@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
         <div className="flex items-center gap-2 font-mono">
           <span className="text-[#fafafa] font-medium">MyTask Core</span>
           <span>•</span>
-          <span>Tahun Akademik 2023/2024 Genap</span>
+          <span>Tahun Akademik 2026/2027 Ganjilp</span>
         </div>
 
         {/* Right info & live indicator */}
@@ -18,7 +18,7 @@ export const Footer: React.FC = () => {
             <span>Sistem Terhubung</span>
           </div>
           <span>•</span>
-          <span>© 2024 Portal Pengumpulan Tugas</span>
+          <span>© 2026 Portal Pengumpulan Tugas</span>
         </div>
       </div>
     </footer>

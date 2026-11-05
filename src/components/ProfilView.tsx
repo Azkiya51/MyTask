@@ -245,7 +245,7 @@ export const ProfilView: React.FC<ProfilViewProps> = ({ student, courses }) => {
           <div className="flex items-center gap-3">
             <div className="px-3 py-1 rounded-full text-xs font-mono font-medium bg-[#18181b] border border-[#27272a] text-[#fafafa] flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#a78bfa]"></span>
-              <span>TOTAL BEBAN: 15 SKS (5 MK)</span>
+              <span>TOTAL BEBAN: 23 SKS (8 MK)</span>
             </div>
             <div className="px-3 py-1 rounded-full text-xs font-mono font-medium bg-[#18181b] border border-[#27272a] text-[#34d399] flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#34d399]"></span>
