@@ -333,11 +333,7 @@ export const PengelolaView: React.FC<PengelolaViewProps> = ({ courses }) => {
                 <div className="w-7 h-7 rounded-lg bg-[#a78bfa]/10 flex items-center justify-center text-[#a78bfa]">
                   <ClipboardList className="w-4 h-4" />
                 </div>
-<<<<<<< HEAD
-                <h2 id="daftar-heading" className="text-sm sm:text-base font-semibold text-[#fafafa]">Daftar Tugas</h2>
-=======
                 <h2 id="daftar-heading" className="text-sm sm:text-base font-semibold text-[#fafafa]">Daftar Tugas Kuliah</h2>
->>>>>>> fix/judul-halaman
               </div>
               <span className="text-xs text-[#a1a1aa] font-mono">{tugasTampil.length} tampil</span>
             </div>
